@@ -21,6 +21,8 @@
     "@tamagui/shorthands": "^1.125.8",
     "@tamagui/themes": "^1.125.8",
     "expo": "^53.0.20",
+    "expo-barcode-scanner": "^13.0.1",
+    "expo-camera": "~16.1.11",
     "expo-constants": "~17.1.4",
     "expo-font": "~13.3.2",
     "expo-linking": "~7.1.4",
