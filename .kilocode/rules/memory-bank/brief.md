@@ -1,0 +1,1 @@
+This is a starter template for creating a react native application using Expo, TypeScript and tamagui. We want to evolve this to showcase a modern tamgui interface for scanning barcodes and displaying information about them.
