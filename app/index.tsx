@@ -1,14 +1,17 @@
 import { BarcodeScanner } from '~/components/BarcodeScanner';
-import { useScannerStore } from '~/store/store';
+import { useScannerStore, useThemeStore } from '~/store/store';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 import { Button, H2, Paragraph, YStack, Card, XStack, Text } from 'tamagui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 
 export default function App() {
   const [isScanning, setIsScanning] = useState(false);
   const { scannedItems, addScannedItem, clearScannedItems } = useScannerStore();
+  const { theme, toggleTheme } = useThemeStore();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   if (isScanning) {
     return <BarcodeScanner onScan={(result) => {
@@ -18,8 +21,19 @@ export default function App() {
   }
 
   return (
-    <YStack flex={1} gap="$4" padding="$4" style={{ paddingTop: insets.top }}>
-      <H2>Barcode Scanner</H2>
+    <YStack flex={1} gap="$4" padding="$4" style={{ paddingTop: insets.top }} backgroundColor="$background">
+      <XStack justifyContent="space-between" alignItems="center">
+        <H2>Barcode Scanner</H2>
+        <XStack gap="$2">
+          <Button
+            onPress={() => router.push('/settings')}
+            size="$4"
+            borderWidth={2}
+            borderColor="$gray10">
+            ⚙️
+          </Button>
+        </XStack>
+      </XStack>
       <Button
         onPress={() => setIsScanning(true)}
         size="$5"

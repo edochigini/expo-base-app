@@ -78,12 +78,6 @@ export const Button = styled(ButtonTamagui, {
 });
 
 const config = createTamagui({
-  light: {
-    color: {
-      background: 'gray',
-      text: 'black',
-    },
-  },
   defaultFont: 'body',
   animations,
   shouldAddPrefersColorThemes: true,

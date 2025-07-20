@@ -1,15 +1,24 @@
 import { BarcodeScanningResult } from 'expo-camera';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface ScannedBarcodeItem extends BarcodeScanningResult {
   timestamp: number;
   count: number;
 }
 
+export type Theme = 'light' | 'dark';
+
 export interface ScannerState {
   scannedItems: ScannedBarcodeItem[];
   addScannedItem: (item: BarcodeScanningResult) => void;
   clearScannedItems: () => void;
+}
+
+export interface ThemeState {
+  theme: Theme;
+  toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
 }
 
 export const useScannerStore = create<ScannerState>((set) => ({
@@ -43,3 +52,19 @@ export const useScannerStore = create<ScannerState>((set) => ({
     }),
   clearScannedItems: () => set({ scannedItems: [] }),
 }));
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      theme: 'light' as Theme,
+      toggleTheme: () =>
+        set((state) => ({
+          theme: state.theme === 'light' ? 'dark' : 'light',
+        })),
+      setTheme: (theme: Theme) => set({ theme }),
+    }),
+    {
+      name: 'theme-storage',
+    }
+  )
+);
