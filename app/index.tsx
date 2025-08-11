@@ -5,6 +5,7 @@ import { FlatList } from 'react-native';
 import { Button, H2, Paragraph, YStack, Card, XStack, Text } from 'tamagui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useTranslation } from '~/utils/useTranslation';
 
 export default function App() {
   const [isScanning, setIsScanning] = useState(false);
@@ -12,19 +13,41 @@ export default function App() {
   const { theme, toggleTheme } = useThemeStore();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { t } = useTranslation();
 
   if (isScanning) {
-    return <BarcodeScanner onScan={(result) => {
-      addScannedItem(result);
-      setIsScanning(false);
-    }} />;
-  }
+return <BarcodeScanner
+  onScan={(result) => {
+    addScannedItem(result);
+    setIsScanning(false);
+  }}
+  onSaveWithLabel={(result, label) => {
+    const scannedItem: import('~/store/store').ScannedBarcodeItem = {
+      ...result,
+      timestamp: Date.now(),
+      count: 1,
+      label: label,
+      isSaved: true,
+    };
+    addScannedItem(scannedItem);
+    setIsScanning(false);
+  }}
+  showSaveOption={true}
+/>;
+}
 
   return (
     <YStack flex={1} gap="$4" padding="$4" style={{ paddingTop: insets.top }} backgroundColor="$background">
       <XStack justifyContent="space-between" alignItems="center">
-        <H2>Barcode Scanner</H2>
+        <H2>{t('common.barcodeScanner')}</H2>
         <XStack gap="$2">
+          <Button
+            onPress={() => router.push('/saved')}
+            size="$4"
+            borderWidth={2}
+            borderColor="$green10">
+            💾
+          </Button>
           <Button
             onPress={() => router.push('/settings')}
             size="$4"
@@ -39,7 +62,14 @@ export default function App() {
         size="$5"
         borderWidth={2}
         borderColor="$blue10">
-        Start Scanning
+        {t('common.startScanning')}
+      </Button>
+      <Button
+        onPress={() => router.push('/saved')}
+        size="$5"
+        borderWidth={2}
+        borderColor="$green10">
+        {t('common.savedScans')}
       </Button>
       <Button
         onPress={clearScannedItems}
@@ -47,7 +77,7 @@ export default function App() {
         size="$5"
         borderWidth={2}
         borderColor="$red10">
-        Clear Scans
+        {t('common.clearScans')}
       </Button>
       <YStack width="100%" space="$2">
         {scannedItems.map((item, index) => (
@@ -67,7 +97,7 @@ export default function App() {
               <YStack flex={1}>
                 <Paragraph fontSize="$5" fontWeight="bold" color="$blue10">{item.data}</Paragraph>
                 {item.count && item.count > 1 && (
-                  <Paragraph fontSize="$2" color="$gray10">({`x${item.count}`})</Paragraph>
+                  <Paragraph fontSize="$2" color="$gray10">({`${t('common.quantity')}${item.count}`})</Paragraph>
                 )}
               </YStack>
             </Card.Footer>

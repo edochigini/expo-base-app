@@ -6,6 +6,7 @@ import { Platform, StatusBar } from 'react-native';
 
 import config from '../tamagui.config';
 import { useThemeStore } from '../store/store';
+import '../i18n';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -60,31 +61,8 @@ function StackNavigator() {
           headerStyle: {
             backgroundColor,
           },
-          cardStyle: {
-            backgroundColor: 'transparent', // Usa transparent per permettere al wrapper di gestire il background
-          },
-          // Riabilita le animazioni con transizione fade per fluidità senza flash bianchi
-          animationEnabled: true,
-          animation: 'fade',
           // Mantieni gesture disabilitate per stabilità
           gestureEnabled: false,
-          // Configura timing ottimizzato per transizioni fluide
-          transitionSpec: {
-            open: {
-              animation: 'timing',
-              config: {
-                duration: 200,
-                useNativeDriver: true,
-              },
-            },
-            close: {
-              animation: 'timing',
-              config: {
-                duration: 150,
-                useNativeDriver: true,
-              },
-            },
-          },
         }}
       >
         <Stack.Screen
@@ -96,6 +74,13 @@ function StackNavigator() {
         />
         <Stack.Screen
           name="settings"
+          options={{
+            headerShown: false,
+            contentStyle: { backgroundColor: 'transparent' },
+          }}
+        />
+        <Stack.Screen
+          name="saved"
           options={{
             headerShown: false,
             contentStyle: { backgroundColor: 'transparent' },

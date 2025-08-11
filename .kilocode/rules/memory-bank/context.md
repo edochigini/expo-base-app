@@ -21,8 +21,16 @@ L'obiettivo corrente è sviluppare un'applicazione React Native/Expo focalizzata
     -   Il file `app/modal.tsx` non esiste più. I risultati della scansione vengono gestiti tramite uno store Zustand (`store/store.ts`) e visualizzati direttamente in una lista all'interno di [`app/index.tsx`](app/index.tsx). Il file [`app/_layout.tsx`](app/_layout.tsx) configura la navigazione principale, impostando [`app/index.tsx`](app/index.tsx) come unica rotta nello stack, senza l'uso di una modale per la visualizzazione dei risultati o di navigazione a schede.
 -   **Componenti Riutilizzabili**: `BarcodeScanner.tsx` è un componente dedicato alla gestione della logica della fotocamera e della scansione.
 -   **Pulizia del Codice**: La directory `app/(tabs)` è stata rimossa.
+-   **Sistema di Salvataggio e Recupero**: Implementato un sistema avanzato per salvare e recuperare le scansioni con persistenza dei dati tramite Zustand persistente.
+-   **Componente SavedItemsList**: Creato un componente riutilizzabile per la visualizzazione delle scansioni salvate con funzionalità di ricerca e filtraggio.
+-   **Etichette Personalizzate**: Aggiunta la possibilità di salvare le scansioni con etichette personalizzate per una migliore organizzazione.
+-   **Nuova Rotta saved.tsx**: Implementata una nuova schermata per accedere e gestire le scansioni salvate, integrata con la navigazione dell'applicazione.
+-   **Store Zustand Persistente**: Aggiornato lo store per supportare la persistenza dei dati, permettendo di mantenere le scansioni anche dopo la chiusura dell'applicazione.
 
 ## Prossimi Passi
 
--   Avviare il server di sviluppo (`npx expo start`) per testare l'applicazione e verificare l'implementazione delle funzionalità e dello stile.
--   Raccogliere feedback dall'utente per eventuali ulteriori miglioramenti o nuove funzionalità.
+-   Testare approfonditamente il sistema di salvataggio e recupero delle scansioni per verificare la stabilità e la performance.
+-   Implementare funzionalità avanzate di gestione delle scansioni come l'esportazione dei dati o la condivisione.
+-   Migliorare l'interfaccia utente con animazioni e transizioni più fluide.
+-   Estendere il sistema di ricerca e filtraggio per supportare più criteri di ricerca complessi.
+-   Valutare l'integrazione con servizi di archiviazione esterni per backup e sincronizzazione.
