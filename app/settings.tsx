@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { YStack, XStack, H2, Switch, Separator, Paragraph, Button, Card, Input } from 'tamagui';
+import { YStack, XStack, H2, Switch, Separator, Paragraph, Button, Card, Input, ScrollView } from 'tamagui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useScannerStore, useThemeStore } from '~/store/store';
@@ -25,7 +25,16 @@ export default function SettingsScreen() {
   };
 
   return (
-    <YStack flex={1} padding="$4" style={{ paddingTop: insets.top }} space="$4" backgroundColor="$background">
+    <ScrollView
+      contentContainerStyle={{
+        paddingTop: insets.top + 16,
+        paddingBottom: insets.bottom + 16,
+        paddingHorizontal: 16,
+        backgroundColor: '$background'
+      }}
+      showsVerticalScrollIndicator={true}
+    >
+      
       <XStack justifyContent="space-between" alignItems="center">
         <H2>Settings</H2>
         <Button onPress={() => router.back()} size="$4" borderWidth={2} borderColor="$gray10">
@@ -143,6 +152,6 @@ export default function SettingsScreen() {
           Built with React Native, Expo, and Tamagui
         </Paragraph>
       </Card>
-    </YStack>
+    </ScrollView>
   );
 }
