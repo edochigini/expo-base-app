@@ -1,55 +1,69 @@
 import React from 'react';
-import { Button, XStack, YStack, Paragraph, Label, Select } from 'tamagui';
+import { Button, XStack, Text } from 'tamagui';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { ActionSheetIOS, Alert, Platform } from 'react-native';
 
 const languages = [
-  { code: 'it', name: 'Italiano', nativeName: 'Italiano' },
-  { code: 'en', name: 'English', nativeName: 'English' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
 ];
 
-export const LanguageSelector = () => {
-  const { i18n, t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+export function LanguageSelector() {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
-    setIsOpen(false);
+  };
+
+  const getCurrentLanguageDisplay = () => {
+    const lang = languages.find(l => l.code === currentLanguage);
+    return lang ? `${lang.flag} ${lang.name}` : 'Select language';
+  };
+
+  const showLanguageSelector = () => {
+    if (Platform.OS === 'ios') {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', ...languages.map(lang => `${lang.flag} ${lang.name}`)],
+          cancelButtonIndex: 0,
+        },
+        (buttonIndex) => {
+          if (buttonIndex > 0) {
+            const selectedLanguage = languages[buttonIndex - 1];
+            handleLanguageChange(selectedLanguage.code);
+          }
+        }
+      );
+    } else {
+      // Android fallback con Alert
+      Alert.alert(
+        'Select Language',
+        'Choose your preferred language',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          ...languages.map(lang => ({
+            text: `${lang.flag} ${lang.name}`,
+            onPress: () => handleLanguageChange(lang.code)
+          }))
+        ]
+      );
+    }
   };
 
   return (
-    <YStack space="$2">
-      <Label fontSize="$3" fontWeight="600">{t('settings.language')}</Label>
-      <XStack alignItems="center">
-        <Select
-          value={currentLanguage.code}
-          onValueChange={handleLanguageChange}
-          onOpenChange={setIsOpen}
-          disablePreventBodyScroll
-        >
-          <Select.Trigger>
-            <XStack alignItems="center" space="$2">
-              <Paragraph>{currentLanguage.nativeName}</Paragraph>
-              <Select.Icon />
-            </XStack>
-          </Select.Trigger>
-          <Select.Content zIndex={200}>
-            {languages.map((language, index) => (
-              <Select.Item
-                key={language.code}
-                value={language.code}
-                index={index}
-              >
-                <XStack alignItems="center" space="$2">
-                  <Paragraph>{language.nativeName}</Paragraph>
-                </XStack>
-              </Select.Item>
-            ))}
-          </Select.Content>
-        </Select>
+    <Button
+      onPress={showLanguageSelector}
+      size="$3"
+      borderWidth={1}
+      borderColor="$borderColor"
+      backgroundColor="$background"
+      pressStyle={{ backgroundColor: '$gray3' }}
+    >
+      <XStack alignItems="center" space="$2">
+        <Text>{getCurrentLanguageDisplay()}</Text>
+        <Text>▼</Text>
       </XStack>
-    </YStack>
+    </Button>
   );
-};
+}
