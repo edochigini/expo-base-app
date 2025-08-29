@@ -1,0 +1,59 @@
+{
+  "common": {
+    "title": "Barcode Scanner",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "app": {
+    "title": "Barcode Scanner"
+  },
+  "scanner": {
+    "startScanning": "Start Scanning",
+    "clearScans": "Clear Scans",
+    "scanning": "Scanning...",
+    "permissionDenied": "Permission Denied",
+    "permissionRequired": "We need your permission to show the camera",
+    "grantPermission": "Grant Permission",
+    "noScans": "No scans performed",
+    "scanAgain": "Scan Again"
+  },
+  "settings": {
+    "title": "Settings",
+    "scanningPreferences": "Scanning Preferences",
+    "soundOnScan": "Sound on scan",
+    "vibrationOnScan": "Vibration on scan",
+    "autoSaveResults": "Auto-save results",
+    "displayOptions": "Display Options",
+    "darkMode": "Dark Mode",
+    "language": "Language",
+    "showTimestamp": "Show timestamp",
+    "showBarcodeType": "Show barcode type",
+    "apiConfiguration": "API Configuration",
+    "apiConfigurationDescription": "Configure your API endpoint for barcode lookup",
+    "dataManagement": "Data Management",
+    "clearAllScannedItems": "Clear All Scanned Items",
+    "clearAllScannedItemsDescription": "This will permanently delete all scanned items from your current session.",
+    "about": "About",
+    "appVersion": "Barcode Scanner v1.0.0",
+    "builtWith": "Built with React Native, Expo, and Tamagui"
+  },
+  "barcode": {
+    "qrCode": "QR Code",
+    "barcode": "Barcode",
+    "unknown": "Unknown",
+    "timestamp": "Timestamp"
+  },
+  "timestamp": {
+    "justNow": "Just now",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "yesterday": "Yesterday",
+    "format": "MM/DD/YYYY HH:mm"
+  }
+}

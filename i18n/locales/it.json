@@ -1,0 +1,59 @@
+{
+  "common": {
+    "title": "Barcode Scanner",
+    "back": "Indietro",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo"
+  },
+  "app": {
+    "title": "Barcode Scanner"
+  },
+  "scanner": {
+    "startScanning": "Inizia Scansione",
+    "clearScans": "Cancella Scansioni",
+    "scanning": "Scansione in corso...",
+    "permissionDenied": "Permesso negato",
+    "permissionRequired": "Abbiamo bisogno del tuo permesso per mostrare la fotocamera",
+    "grantPermission": "Concedi Permesso",
+    "noScans": "Nessuna scansione effettuata",
+    "scanAgain": "Scansiona di nuovo"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "scanningPreferences": "Preferenze di Scansione",
+    "soundOnScan": "Suono alla scansione",
+    "vibrationOnScan": "Vibrazione alla scansione",
+    "autoSaveResults": "Salvataggio automatico risultati",
+    "displayOptions": "Opzioni Display",
+    "darkMode": "Modalità Scura",
+    "language": "Lingua",
+    "showTimestamp": "Mostra timestamp",
+    "showBarcodeType": "Mostra tipo codice a barre",
+    "apiConfiguration": "Configurazione API",
+    "apiConfigurationDescription": "Configura il tuo endpoint API per la ricerca di codici a barre",
+    "dataManagement": "Gestione Dati",
+    "clearAllScannedItems": "Cancella tutti gli elementi scansionati",
+    "clearAllScannedItemsDescription": "Questo cancellerà permanentemente tutti gli elementi scansionati dalla sessione corrente.",
+    "about": "Informazioni",
+    "appVersion": "Barcode Scanner v1.0.0",
+    "builtWith": "Creato con React Native, Expo e Tamagui"
+  },
+  "barcode": {
+    "qrCode": "Codice QR",
+    "barcode": "Codice a Barre",
+    "unknown": "Sconosciuto",
+    "timestamp": "Timestamp"
+  },
+  "timestamp": {
+    "justNow": "Adesso",
+    "minutesAgo": "minuti fa",
+    "hoursAgo": "ore fa",
+    "yesterday": "Ieri",
+    "format": "DD/MM/YYYY HH:mm"
+  }
+}

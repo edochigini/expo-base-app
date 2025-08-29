@@ -26,3 +26,10 @@ L'obiettivo corrente è sviluppare un'applicazione React Native/Expo focalizzata
 
 -   Avviare il server di sviluppo (`npx expo start`) per testare l'applicazione e verificare l'implementazione delle funzionalità e dello stile.
 -   Raccogliere feedback dall'utente per eventuali ulteriori miglioramenti o nuove funzionalità.
+
+## Progresso Recente
+
+-   **Integrazione di react-i18next**: Implementata l'internazionalizzazione dell'applicazione con supporto a inglese e italiano.
+-   **Componenti internazionalizzati**: Aggiornati i componenti principali per utilizzare le traduzioni.
+-   **Gestione della lingua**: Aggiunto supporto per la selezione della lingua tramite componente dedicato.
+-   **Struttura delle traduzioni**: Organizzati i file di traduzione per categorie e lingue.

@@ -3,8 +3,11 @@ import { YStack, XStack, H2, Switch, Separator, Paragraph, Button, Card, Input, 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useScannerStore, useThemeStore } from '~/store/store';
+import { LanguageSelector } from '~/components/LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 export default function SettingsScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const { clearScannedItems } = useScannerStore();
@@ -36,17 +39,17 @@ export default function SettingsScreen() {
     >
       
       <XStack justifyContent="space-between" alignItems="center">
-        <H2>Settings</H2>
+        <H2>{t('settings.title')}</H2>
         <Button onPress={() => router.back()} size="$4" borderWidth={2} borderColor="$gray10">
-          Back
+          {t('common.back')}
         </Button>
       </XStack>
 
       <Card bordered padding="$4" space="$4">
-        <Paragraph size="$6" fontWeight="bold">Scanning Preferences</Paragraph>
+        <Paragraph size="$6" fontWeight="bold">{t('settings.scanningPreferences')}</Paragraph>
         
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Sound on scan</Paragraph>
+          <Paragraph>{t('settings.soundOnScan')}</Paragraph>
           <Switch
             size="$3"
             checked={settings.soundEnabled}
@@ -57,7 +60,7 @@ export default function SettingsScreen() {
         <Separator />
 
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Vibration on scan</Paragraph>
+          <Paragraph>{t('settings.vibrationOnScan')}</Paragraph>
           <Switch
             size="$3"
             checked={settings.vibrationEnabled}
@@ -68,7 +71,7 @@ export default function SettingsScreen() {
         <Separator />
 
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Auto-save results</Paragraph>
+          <Paragraph>{t('settings.autoSaveResults')}</Paragraph>
           <Switch
             size="$3"
             checked={settings.autoSaveEnabled}
@@ -78,10 +81,10 @@ export default function SettingsScreen() {
       </Card>
 
       <Card bordered padding="$4" space="$4">
-        <Paragraph size="$6" fontWeight="bold">Display Options</Paragraph>
+        <Paragraph size="$6" fontWeight="bold">{t('settings.displayOptions')}</Paragraph>
         
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Dark Mode</Paragraph>
+          <Paragraph>{t('settings.darkMode')}</Paragraph>
           <Switch
             size="$3"
             checked={theme === 'dark'}
@@ -92,7 +95,14 @@ export default function SettingsScreen() {
         <Separator />
 
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Show timestamp</Paragraph>
+          <Paragraph>{t('settings.language')}</Paragraph>
+          <LanguageSelector />
+        </XStack>
+
+        <Separator />
+
+        <XStack justifyContent="space-between" alignItems="center">
+          <Paragraph>{t('settings.showTimestamp')}</Paragraph>
           <Switch
             size="$3"
             checked={settings.showTimestamp}
@@ -103,7 +113,7 @@ export default function SettingsScreen() {
         <Separator />
 
         <XStack justifyContent="space-between" alignItems="center">
-          <Paragraph>Show barcode type</Paragraph>
+          <Paragraph>{t('settings.showBarcodeType')}</Paragraph>
           <Switch
             size="$3"
             checked={settings.showBarcodeType}
@@ -113,9 +123,9 @@ export default function SettingsScreen() {
       </Card>
 
       <Card bordered padding="$4" space="$4">
-        <Paragraph size="$6" fontWeight="bold">API Configuration</Paragraph>
+        <Paragraph size="$6" fontWeight="bold">{t('settings.apiConfiguration')}</Paragraph>
         <Paragraph size="$2" color="$gray11" marginBottom="$2">
-          Configure your API endpoint for barcode lookup
+          {t('settings.apiConfigurationDescription')}
         </Paragraph>
         <Input
           value={apiEndpoint}
@@ -127,7 +137,7 @@ export default function SettingsScreen() {
       </Card>
 
       <Card bordered padding="$4" space="$4">
-        <Paragraph size="$6" fontWeight="bold">Data Management</Paragraph>
+        <Paragraph size="$6" fontWeight="bold">{t('settings.dataManagement')}</Paragraph>
         
         <Button
           onPress={clearScannedItems}
@@ -135,21 +145,21 @@ export default function SettingsScreen() {
           color="white"
           size="$4"
         >
-          Clear All Scanned Items
+          {t('settings.clearAllScannedItems')}
         </Button>
         
         <Paragraph size="$2" color="$gray11">
-          This will permanently delete all scanned items from your current session.
+          {t('settings.clearAllScannedItemsDescription')}
         </Paragraph>
       </Card>
 
       <Card bordered padding="$4" space="$4">
-        <Paragraph size="$6" fontWeight="bold">About</Paragraph>
+        <Paragraph size="$6" fontWeight="bold">{t('settings.about')}</Paragraph>
         <Paragraph size="$3">
-          Barcode Scanner v1.0.0
+          {t('settings.appVersion')}
         </Paragraph>
         <Paragraph size="$2" color="$gray11">
-          Built with React Native, Expo, and Tamagui
+          {t('settings.builtWith')}
         </Paragraph>
       </Card>
     </ScrollView>
